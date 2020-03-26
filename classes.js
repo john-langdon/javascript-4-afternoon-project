@@ -41,6 +41,11 @@ makeWidget() {
 }
 }
 
+let employee = new Employee("john", "langdon", "jlangdonjr@gmail.com", "30")
+
+
+// employee = new Employee("john", "langdon", "jlangdonjr@gmail.com", "30")
+
 
 ////////// PROBLEM 2 //////////
 
@@ -58,7 +63,7 @@ makeWidget() {
 */
 
 class Manager extends Employee {
-  constructor(first_name, last_name, email, age, reports){
+  constructor(first_name, last_name, email, age){
     super(first_name, last_name, email, age)
     this.reports = [];
   }
@@ -88,8 +93,32 @@ fire=(index) => {this.reports.splice(index,1)}
   Call your new class ProgressiveManager
 */
 
-//Code Here
-
+class ProgressiveManager extends Manager {
+  constructor(first_name, last_name, email, age, reports) {
+    super(first_name, last_name, email, age, reports)
+    this.title = "Not a manager"
+    this.bonus = 0
+  }
+  hire = (employee) => {
+    this.reports.push(employee)
+    if(this.reports.length === 0)
+    {this.title = "Not a manager"}
+    else if(this.reports.length <= 3)
+    {this.title = "Barely Manager"}
+    else if(this.reports.length <= 10)
+    {this.title = "Mostly Manager"}
+    else if (this.reports.length <= 40)
+    {this.title = "Manager"}
+    else if (this.reports.length <= 100)
+    {this.title = "Manager Plus"}
+    else if (this.reports.length >= 101)
+    {this.title = "Bestest Manager"}
+  }
+  fire = (index) => {
+    this.reports.splice(index,1)
+    this.bonus += 100
+  }
+}
 
 
 ////////// PROBLEM 4 - Black Diamond //////////
